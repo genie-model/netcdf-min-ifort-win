@@ -1,0 +1,21 @@
+from __future__ import print_function
+import os, os.path, sys, glob
+
+Import('env')
+
+include_f90s = ['netcdf3_file.f90', 'netcdf_attributes.f90',
+                'netcdf_constants.f90', 'netcdf_dims.f90',
+                'netcdf_eightbyte.f90', 'netcdf_expanded.f90',
+                'netcdf_externals.f90', 'netcdf_file.f90',
+                'netcdf_overloads.f90', 'netcdf_text_variables.f90',
+                'netcdf_variables.f90', 'netcdf_visibility.f90']
+
+env.Replace(CPPPATH=[os.curdir, os.path.join(os.pardir, 'netcdf')])
+
+fsrcs = Glob('*.f90') + Glob('*.F90')
+fsrcs = { f : 1 for f in fsrcs if str(f) not in include_f90s }.keys()
+csrcs = Glob('*.c')
+srcs = fsrcs + csrcs
+
+objs = env.SharedObject(srcs)
+Return('objs')

@@ -1,0 +1,9 @@
+from __future__ import print_function
+import os, os.path, sys, glob
+
+Import('env')
+#env = Environment(CPPPATH=[os.curdir])
+
+srcs = Glob('*.c')
+objs = env.SharedObject(srcs)
+Return('objs')
