@@ -103,6 +103,6 @@
 #if 0
 #define HAVE_TS29113_SUPPORT 1
 #endif
-#define SIZEOF_PTRDIFF_T 8
+#define SIZEOF_PTRDIFF_T 4
 
 #endif /*UD_NETCDF_CPP_INC*/
